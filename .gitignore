@@ -1,0 +1,12 @@
+text.txt
+
+node_modules
+
+venv
+
+.env
+
+/uploads/*
+!/uploads/
+
+zzzzzz
