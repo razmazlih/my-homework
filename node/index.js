@@ -1,5 +1,4 @@
 const express = require('express');
-const app = express();
 const multer = require('multer');
 const { Pool } = require('pg');
 const { dbConfig } = require('./config');
@@ -7,6 +6,7 @@ const { dbConfig } = require('./config');
 const upload = multer({ dest: 'uploads/' });
 const pool = new Pool(dbConfig);
 
+const app = express();
 app.use(express.json());
 
 app.listen(3000, () => {
