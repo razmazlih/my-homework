@@ -14,7 +14,7 @@ app.listen(3000, () => {
 });
 
 app.post('/upload', upload.single('file'), async (req, res) => {
-    const { originalname, buffer } = req.file;  // 'buffer' מכיל את תוכן הקובץ
+    const { originalname, buffer } = req.file;
     const uploadTime = new Date();
     const status = 'uploaded';
 
