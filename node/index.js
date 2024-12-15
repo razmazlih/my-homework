@@ -14,14 +14,14 @@ app.listen(3000, () => {
 });
 
 app.post('/upload', upload.single('file'), async (req, res) => {
-    const { originalname, path } = req.file;
+    const { originalname, buffer } = req.file;  // 'buffer' מכיל את תוכן הקובץ
     const uploadTime = new Date();
     const status = 'uploaded';
 
     try {
         const result = await pool.query(
-            'INSERT INTO documents (filename, upload_time, status) VALUES ($1, $2, $3) RETURNING id',
-            [originalname, uploadTime, status]
+            'INSERT INTO documents (filename, upload_time, status, file_data) VALUES ($1, $2, $3, $4) RETURNING id',
+            [originalname, uploadTime, status, buffer]
         );
         res.json({ documentId: result.rows[0].id });
     } catch (err) {
